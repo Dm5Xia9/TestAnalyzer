@@ -1,0 +1,21 @@
+﻿<Window x:Class="ViewAnalyzer.Wpf.SignIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ViewAnalyzer.Wpf"
+        mc:Ignorable="d"
+        Title="SignIn" Height="219" Width="248">
+    <Grid>
+        <Grid Margin="0,10,0,0" HorizontalAlignment="Center" Width="224" VerticalAlignment="Top" Height="36">
+            <Label Content="Логин" Margin="0,0,174,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="Login" Margin="49,0,0,0" HorizontalAlignment="Left" Width="174"/>
+        </Grid>
+        <Grid Margin="0,51,0,0" HorizontalAlignment="Center" Width="224" VerticalAlignment="Top" Height="36">
+            <Label Content="Пароль" Margin="0,0,174,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="Password" Margin="49,0,0,0" HorizontalAlignment="Left" Width="174"/>
+        </Grid>
+        <Button Click="Button_Click" Margin="0,128,0,0" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" Height="33" Content="Войти" HorizontalAlignment="Center" Width="144"/>
+        <Label x:Name="ErrorLabel" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,183,0,0"/>
+    </Grid>
+</Window>
