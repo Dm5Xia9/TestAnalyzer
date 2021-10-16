@@ -48,7 +48,6 @@ namespace ViewAnalyzer.Wpf
                 new AnalyzerService(analyzerApiSection.GetSection("Host").Value,
                     analyzerApiSection.GetSection("Port").Value));
 
-            serviceCollection.AddSingleton<AnalyzerService>(p => new AnalyzerService("localhost", "5000"));
             serviceCollection.AddTransient<AnalyzerProcessor>();
         }
 
