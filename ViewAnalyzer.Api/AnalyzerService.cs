@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using ViewAnalyzer.Api.Models;
@@ -26,7 +27,7 @@ namespace ViewAnalyzer.Api
             StringContent httpContent = null;
             if(obj != null)
             {
-                var json = JsonConvert.SerializeObject(obj);
+                var json = JsonSerializer.Serialize(obj);
 
                 httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             }
@@ -103,7 +104,7 @@ namespace ViewAnalyzer.Api
                 else
                 {
                     analyzerResult.Result = waitResult.Result.Services.Select(p => 
-                        new StudyResult { Code = p.ServiceCode, Result = p.Result }).ToList();
+                        new StudyResult { Code = p.ServiceCode, Result = p.GetString() }).ToList();
 
                     analyzerResult.ResultState = ResultState.Expect;
 
@@ -144,14 +145,14 @@ namespace ViewAnalyzer.Api
                 return new ServiceResult
                 {
                     StatusCode = response.StatusCode,
-                    ProgressInfo = JsonConvert.DeserializeObject<ProgressInfo>(str),
+                    ProgressInfo = JsonSerializer.Deserialize<ProgressInfo>(str),
                 };
             }
 
             return new ServiceResult
             {
                 StatusCode = System.Net.HttpStatusCode.OK,
-                Result = JsonConvert.DeserializeObject<Analyzer<ServiceInfoResult>>(str),
+                Result = JsonSerializer.Deserialize<Analyzer<ServiceInfoResult>>(str),
             };
         }
 

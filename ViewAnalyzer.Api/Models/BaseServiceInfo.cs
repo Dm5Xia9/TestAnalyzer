@@ -1,14 +1,15 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ViewAnalyzer.Api.Models
 {
     public abstract class BaseServiceInfo
     {
-        public abstract int ServiceCode { get; set; }
+        [JsonPropertyName("serviceCode")]
+        public int ServiceCode { get; set; }
     }
 }

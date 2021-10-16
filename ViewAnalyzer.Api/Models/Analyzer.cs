@@ -1,18 +1,18 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ViewAnalyzer.Api.Models
 {
     public class Analyzer<TService> : Analyzer where TService : BaseServiceInfo
     {
-        [JsonProperty(PropertyName = "patient")]
+        [JsonPropertyName("patient")]
         public string Patient { get; set; }
 
-        [JsonProperty(PropertyName = "services")]
+        [JsonPropertyName("services")]
         public List<TService> Services { get; set; }
     }
 

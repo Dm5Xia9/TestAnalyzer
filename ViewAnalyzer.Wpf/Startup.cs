@@ -17,11 +17,8 @@ namespace ViewAnalyzer.Wpf
 {
     public class Startup
     {
-        IConfiguration configuration;
-
-        public Startup(IConfiguration configuration)
+        public Startup()
         {
-            this.configuration = configuration;
         }
 
         public void ServiceConfigure(IServiceCollection serviceCollection)
@@ -33,8 +30,7 @@ namespace ViewAnalyzer.Wpf
 
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
-            var connectionString = configuration.GetConnectionString("PostgresDb");
-            optionsBuilder.UseNpgsql(connectionString);
+            optionsBuilder.UseNpgsql("*");
 
             serviceCollection.AddTransient<AppDbContext>(p => new AppDbContext(optionsBuilder.Options));
 
@@ -42,11 +38,8 @@ namespace ViewAnalyzer.Wpf
             serviceCollection.AddTransient<Database>();
             serviceCollection.AddSingleton<DataFactory>();
 
-            var analyzerApiSection = configuration.GetSection("AnalyzerApi");
-
             serviceCollection.AddSingleton<AnalyzerService>(p =>
-                new AnalyzerService(analyzerApiSection.GetSection("Host").Value,
-                    analyzerApiSection.GetSection("Port").Value));
+                new AnalyzerService("localhost", "5000"));
 
             serviceCollection.AddTransient<AnalyzerProcessor>();
         }

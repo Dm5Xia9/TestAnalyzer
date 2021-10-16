@@ -22,12 +22,7 @@ namespace ViewAnalyzer.Wpf
         {
             var builder = new InjectBuilder();
 
-
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\")))
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-
-            var startup = new Startup(config.Build());
+            var startup = new Startup();
 
             startup.ServiceConfigure(builder.Build());
 

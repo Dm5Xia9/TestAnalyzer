@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ViewAnalyzer.Api.Models
@@ -19,7 +19,7 @@ namespace ViewAnalyzer.Api.Models
 
     public class ProgressInfo
     {
-        [JsonProperty(PropertyName = "progress")]
+        [JsonPropertyName("progress")]
         public int Progress { get; set; }
     }
 }
